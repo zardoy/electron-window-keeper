@@ -26,6 +26,8 @@ app.on("ready", () => {
 });
 ```
 
+If you don't understand `...` (spread syntax) you can read [javascript.info guide](https://javascript.info/rest-parameters-spread).
+
 To disable tracking of maximized state pass `trackMaximized: false`.
 
 To disable tracking of fullscreen state just pass `fullscreen: false` right after *restoredState*:
