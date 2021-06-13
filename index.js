@@ -58,7 +58,7 @@ class ElectronWindowKeeper {
         this.restoredState = lodash_1.omit(this.restoredFullState, "maximized");
     }
     manuallySaveState(browserWindow) {
-        const bounds = browserWindow.getBounds();
+        const bounds = lodash_1.mapValues(browserWindow.getBounds(), value => lodash_1.clamp(value, 0));
         this.electronStore.set({
             ...bounds,
             fullscreen: browserWindow.isFullScreen(),
@@ -73,10 +73,9 @@ class ElectronWindowKeeper {
         // fullscreen controlled via prop
         const { maximized: maximizedConfig } = this.options;
         if (maximizedConfig !== false) {
-            if (this.restoredFullState.maximized)
-                browserWindow.maximize();
             // todo test false option
-            else if (!("maximize" in this.restoredFullState) && ((_a = maximizedConfig === null || maximizedConfig === void 0 ? void 0 : maximizedConfig.default) !== null && _a !== void 0 ? _a : true))
+            if (("maximized" in this.restoredFullState && this.restoredFullState.maximized) ||
+                ((_a = maximizedConfig === null || maximizedConfig === void 0 ? void 0 : maximizedConfig.default) !== null && _a !== void 0 ? _a : true))
                 browserWindow.maximize();
         }
         const updateState = lodash_1.debounce(() => this.manuallySaveState(browserWindow), 500);
