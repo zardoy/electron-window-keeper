@@ -39,11 +39,11 @@ export default class ElectronWindowKeeper {
     options: Options;
     private electronStore;
     /** Pass todo. It won't upate */
-    restoredState: Rectangle & {
+    restoredState: Partial<Rectangle & {
         fullscreen: boolean;
-    };
+    }>;
     /** Including maximized */
-    restoredFullState: Rectangle & Record<(typeof propsToPreserve["boolean"])[number], boolean>;
+    restoredFullState: Partial<Rectangle & Record<(typeof propsToPreserve["boolean"])[number], boolean>>;
     filePath: string;
     constructor(options?: Options);
     manuallySaveState(browserWindow: BrowserWindow): void;
