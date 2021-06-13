@@ -107,7 +107,7 @@ export default class ElectronWindowKeeper {
         const bounds =
             mapValues(
                 browserWindow.getBounds(),
-                value => clamp(value, 0)
+                value => clamp(value, 0, Infinity)
             );
 
         this.electronStore.set({
@@ -125,10 +125,11 @@ export default class ElectronWindowKeeper {
         const { maximized: maximizedConfig } = this.options;
         if (maximizedConfig !== false) {
             // todo test false option
-            if (
-                ("maximized" in this.restoredFullState && this.restoredFullState.maximized) ||
-                (maximizedConfig?.default ?? true)
-            ) browserWindow.maximize();
+            if ("maximized" in this.restoredFullState) {
+                if (this.restoredFullState.maximized) browserWindow.maximize();
+            } else {
+                if (maximizedConfig?.default ?? true) browserWindow.maximize();
+            }
         }
 
         const updateState = debounce(() => this.manuallySaveState(browserWindow), 500);
