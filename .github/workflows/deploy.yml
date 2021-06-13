@@ -9,7 +9,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: |-
-          cd patch-script
           yarn install --frozen-lockfile
           yarn prepublishOnly
       - uses: peaceiris/actions-gh-pages@v3
