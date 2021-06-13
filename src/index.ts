@@ -1,7 +1,7 @@
 import { app, BrowserWindow, Rectangle } from "electron";
 import ElectronStore, { Options as StoreOptions } from "electron-store";
 import path from "path";
-import { pick, debounce, omit } from "lodash";
+import { pick, debounce, omit, mapValues, clamp } from "lodash";
 
 import { JSONSchema } from "json-schema-typed";
 
@@ -104,7 +104,11 @@ export default class ElectronWindowKeeper {
     }
 
     manuallySaveState(browserWindow: BrowserWindow) {
-        const bounds = browserWindow.getBounds();
+        const bounds =
+            mapValues(
+                browserWindow.getBounds(),
+                value => clamp(value, 0)
+            );
 
         this.electronStore.set({
             ...bounds,
@@ -120,9 +124,11 @@ export default class ElectronWindowKeeper {
         // fullscreen controlled via prop
         const { maximized: maximizedConfig } = this.options;
         if (maximizedConfig !== false) {
-            if (this.restoredFullState.maximized) browserWindow.maximize();
             // todo test false option
-            else if (!("maximize" in this.restoredFullState) && (maximizedConfig?.default ?? true)) browserWindow.maximize();
+            if (
+                ("maximized" in this.restoredFullState && this.restoredFullState.maximized) ||
+                (maximizedConfig?.default ?? true)
+            ) browserWindow.maximize();
         }
 
         const updateState = debounce(() => this.manuallySaveState(browserWindow), 500);
