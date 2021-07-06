@@ -1,6 +1,8 @@
 # Electron Window Keeper
 
-The most maintained module for persisting Electron window state. Also note, that I'm going to make this module super easy to use in all possible cases where you need complicated window state persistence.
+> In one day, that I'm gonna make this module super easy to use in all possible cases where you need complicated window state persistence.
+
+It should be a maintained alternative to electron-window-state.
 
 Available to use in main process only.
 
