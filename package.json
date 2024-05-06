@@ -30,6 +30,7 @@
   "devDependencies": {
     "@ava/typescript": "^1.1.1",
     "@types/lodash": "^4.14.170",
+    "@types/node": "^20.12.9",
     "@zardoy/tsconfig": "^1.1.0",
     "electron": "^13.1.2",
     "json-schema-typed": "^7.0.3",

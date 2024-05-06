@@ -8,14 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: |-
-          yarn install --frozen-lockfile
-          yarn prepublishOnly
+      - run: npm i -g pnpm && pnpm i
       - name: Set publishing config
         run: npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-      - run: npx zardoy-release npm
+      - run: pnpx zardoy-release npm
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

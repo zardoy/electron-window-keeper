@@ -1,6 +1,10 @@
 {
     "extends": "@zardoy/tsconfig/node",
     "compilerOptions": {
+        "target": "ES2021",
         "declaration": true
-    }
+    },
+    "include": [
+        "src"
+    ]
 }
