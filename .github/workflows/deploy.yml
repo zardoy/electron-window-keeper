@@ -11,6 +11,15 @@ jobs:
       - run: |-
           yarn install --frozen-lockfile
           yarn prepublishOnly
+      - name: Set publishing config
+        run: npm config set '//registry.npmjs.org/:_authToken' "${NODE_AUTH_TOKEN}"
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - run: npx zardoy-release npm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - run: node scripts/prepare-package-json.mjs
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}

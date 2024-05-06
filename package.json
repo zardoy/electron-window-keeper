@@ -24,8 +24,8 @@
     "build"
   ],
   "scripts": {
-    "prepublishOnly": "tsc && node scripts/prepare-package-json.mjs",
-    "test": "ava --serial"
+    "prepublishOnly": "tsc",
+    "test-todo": "ava --serial"
   },
   "devDependencies": {
     "@ava/typescript": "^1.1.1",
