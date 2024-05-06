@@ -1,7 +1,9 @@
 {
     "extends": "@zardoy/tsconfig/node",
     "compilerOptions": {
-        "target": "ES2021",
+        "target": "ES2022",
+        "module": "CommonJS",
+        "esModuleInterop": true,
         "declaration": true
     },
     "include": [
