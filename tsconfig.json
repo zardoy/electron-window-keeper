@@ -1,5 +1,5 @@
 {
-    "extends": "@zardoy/tsconfig/node",
+    "extends": "@zardoy/tsconfig/",
     "compilerOptions": {
         "target": "ES2022",
         "module": "CommonJS",
