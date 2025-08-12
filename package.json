@@ -21,7 +21,7 @@
   "author": "Vitaly <vital2580@icloud.com>",
   "license": "MIT",
   "files": [
-    "build"
+    "dist"
   ],
   "scripts": {
     "prepublishOnly": "pnpm build",
