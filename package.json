@@ -42,5 +42,11 @@
   },
   "peerDependencies": {
     "electron": ">=12"
-  }
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "electron"
+    ]
+  },
+  "packageManager": "pnpm@10.14.0"
 }
