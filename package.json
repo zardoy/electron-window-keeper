@@ -1,8 +1,8 @@
 {
   "name": "electron-window-keeper",
   "version": "0.0.0-development",
-  "main": "build/index.js",
-  "types": "build/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "description": "Best way to preserve electron window state",
   "repository": "https://github.com/zardoy/electron-window-keeper",
   "keywords": [
