@@ -24,7 +24,8 @@
     "build"
   ],
   "scripts": {
-    "prepublishOnly": "tsc",
+    "prepublishOnly": "pnpm build",
+    "build": "tsc",
     "test-todo": "ava --serial"
   },
   "devDependencies": {
